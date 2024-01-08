@@ -2,9 +2,24 @@ div {
     border: 1px solid black;
 }
 
+.inner-row {
+    border: none;
+}
+
 #grid-container {
+    margin: auto;
     display: flex;
     flex-direction: row;
     width:fit-content;
     border: none;
+}
+
+.innerSquare {
+    height: 20px;
+    width: 20px;
+    margin: 1px;
+}
+
+.hovered {
+    background-color: black;
 }

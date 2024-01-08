@@ -1,4 +1,5 @@
 const gridContainer = document.querySelector("#grid-container");
+const squareDivs = [];
 
 const createGrid = () => {
     let rowContainer = document.createElement('div');
@@ -9,12 +10,12 @@ const createGrid = () => {
                 gridContainer.appendChild(rowContainer)
                 rowContainer.appendChild(squareDiv);
                 rowContainer.classList.add('inner-row')
-                squareDiv.textContent = `square ${i + 1}`
+                // squareDiv.textContent = `square ${i + 1}`
                 squareDiv.classList.add('innerSquare')
                 console.log('is zero');
             } else if ((i+1) % 16 === 0) {
                 rowContainer.appendChild(squareDiv);
-                squareDiv.textContent = `square ${i + 1}`
+                // squareDiv.textContent = `square ${i + 1}`
                 squareDiv.classList.add('innerSquare')
                 console.log('divisible by 4');
                 rowContainer = document.createElement('div');
@@ -23,12 +24,20 @@ const createGrid = () => {
 
             } else {
                 rowContainer.appendChild(squareDiv);
-                squareDiv.textContent = `square ${i + 1}`
+                // squareDiv.textContent = `square ${i + 1}`
                 console.log('not divisible by 4')
                 squareDiv.classList.add('innerSquare')
 
         }
+        squareDivs.push(squareDiv)
     }
 }
 
 createGrid();
+
+
+squareDivs.forEach((squareDiv) => {
+    squareDiv.addEventListener('mouseover', () => {
+        squareDiv.classList.add('hovered')
+    })
+})
