@@ -1,31 +1,27 @@
 const gridContainer = document.querySelector("#grid-container");
 const squareDivs = [];
+const resizeButton = document.querySelector(".resize-button")
+let newDimension;
 
-const createGrid = () => {
+const createGrid = (dimension) => {
     let rowContainer = document.createElement('div');
-
-    for(let i = 0 ; i <=255 ; i++){
+    console.log(dimension*dimension)
+    for(let i = 0 ; i <=(dimension ? (dimension*dimension - 1): 255) ; i++){
         let squareDiv = document.createElement('div');
         if(i === 0){
                 gridContainer.appendChild(rowContainer)
                 rowContainer.appendChild(squareDiv);
                 rowContainer.classList.add('inner-row')
-                // squareDiv.textContent = `square ${i + 1}`
                 squareDiv.classList.add('innerSquare')
-                console.log('is zero');
-            } else if ((i+1) % 16 === 0) {
+            } else if ((i+1) % dimension === 0) {
                 rowContainer.appendChild(squareDiv);
-                // squareDiv.textContent = `square ${i + 1}`
                 squareDiv.classList.add('innerSquare')
-                console.log('divisible by 4');
                 rowContainer = document.createElement('div');
                 gridContainer.appendChild(rowContainer);
                 rowContainer.classList.add('inner-row')
 
             } else {
                 rowContainer.appendChild(squareDiv);
-                // squareDiv.textContent = `square ${i + 1}`
-                console.log('not divisible by 4')
                 squareDiv.classList.add('innerSquare')
 
         }
@@ -33,11 +29,25 @@ const createGrid = () => {
     }
 }
 
-createGrid();
-
-
-squareDivs.forEach((squareDiv) => {
+const fillSquares = () => {
+    squareDivs.forEach((squareDiv) => {
     squareDiv.addEventListener('mouseover', () => {
         squareDiv.classList.add('hovered')
     })
+}) }
+
+createGrid(16);
+fillSquares();
+
+resizeButton.addEventListener('click', () => {
+    newDimension = +prompt('Enter the new length of the grid');
+    while ((newDimension % 1 != 0) || (newDimension <= 0)){
+        newDimension = +prompt('Please enter a positive number');
+    }
+    gridContainer.textContent = '';
+    createGrid(newDimension);
+    fillSquares();
 })
+
+
+
