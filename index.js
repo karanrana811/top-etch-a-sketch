@@ -5,7 +5,6 @@ let newDimension;
 
 const createGrid = (dimension) => {
     let rowContainer = document.createElement('div');
-    console.log(dimension*dimension)
     for(let i = 0 ; i <=(dimension ? (dimension*dimension - 1): 255) ; i++){
         let squareDiv = document.createElement('div');
         if(i === 0){
@@ -14,11 +13,19 @@ const createGrid = (dimension) => {
                 rowContainer.classList.add('inner-row')
                 squareDiv.classList.add('innerSquare')
             } else if ((i+1) % dimension === 0) {
-                rowContainer.appendChild(squareDiv);
-                squareDiv.classList.add('innerSquare')
-                rowContainer = document.createElement('div');
-                gridContainer.appendChild(rowContainer);
-                rowContainer.classList.add('inner-row')
+                    
+                if (i === (dimension*dimension - 1)){
+                    
+                    rowContainer.appendChild(squareDiv);
+                    squareDiv.classList.add('innerSquare')
+                } else {
+                    rowContainer.appendChild(squareDiv);
+                    squareDiv.classList.add('innerSquare')
+                    rowContainer = document.createElement('div');
+                    gridContainer.appendChild(rowContainer);
+                    rowContainer.classList.add('inner-row');
+                    
+                }
 
             } else {
                 rowContainer.appendChild(squareDiv);
@@ -41,8 +48,8 @@ fillSquares();
 
 resizeButton.addEventListener('click', () => {
     newDimension = +prompt('Enter the new length of the grid');
-    while ((newDimension % 1 != 0) || (newDimension <= 0)){
-        newDimension = +prompt('Please enter a positive number');
+    while ((newDimension % 1 != 0) || ( 0 >= newDimension) || (newDimension > 100)){
+        newDimension = +prompt('Please enter a positive number smaller than 100');
     }
     gridContainer.textContent = '';
     createGrid(newDimension);

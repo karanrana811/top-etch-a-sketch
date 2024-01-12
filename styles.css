@@ -4,20 +4,27 @@ div {
 
 .inner-row {
     border: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 #grid-container {
     margin: auto;
     display: flex;
     flex-direction: row;
-    width:fit-content;
     border: none;
+    width: 600px;
+    height: 600px;
+    align-items: stretch;
 }
 
 .innerSquare {
-    height: 20px;
-    width: 20px;
+    /* height: 20px; */
+    /* width: auto; */
     margin: 1px;
+    flex: 1;
+
 }
 
 .hovered {
