@@ -38,8 +38,9 @@ const createGrid = (dimension) => {
 
 const fillSquares = () => {
     squareDivs.forEach((squareDiv) => {
-    squareDiv.addEventListener('mouseover', () => {
-        squareDiv.classList.add('hovered')
+    let opacity = 0;
+    squareDiv.addEventListener('mouseover', (event) => {
+        squareDiv.style.background = `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)}, ${opacity >= 1 ?opacity : opacity += 0.1 })`
     })
 }) }
 
